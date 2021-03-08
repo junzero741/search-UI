@@ -1,0 +1,6 @@
+node_modules
+*.json
+routes
+app.js
+*.css
+*.map
