@@ -16,12 +16,14 @@ RollingKeyword.prototype.addList = function(count) {
 
 RollingKeyword.prototype.rolling = function(time) {
     let move = 0;
+    const rollSpace = 30;
+    const rollEnd = -330;
     const roll = () => {
         setTimeout(() => {
             this.ol.style.transition = `all 0.3s`;
             this.ol.style.top = `${move}px`;   
-            if(move > -330) {
-                move -= 30;
+            if(move > rollEnd) {
+                move -= rollSpace;
             } else {
                 this.ol.style.transition = `all 0s`;
                 move = 0;
