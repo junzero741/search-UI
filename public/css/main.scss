@@ -19,7 +19,7 @@ $item_list_size: 200px;
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 .hide {
-    display: none !important;
+    display: none;
 }
 
 ul,
@@ -65,6 +65,14 @@ input {
     }
 }
 
+.redBorder {
+    border: 1px solid red;
+}
+
+.mainBorder {
+    border: 1px solid $main_gray;
+}
+
 .search_box {
     border: 1px solid $main_gray;
     position: relative;
@@ -75,11 +83,12 @@ input {
     justify-content: space-between;
     align-items: center;
 
-    .search {
-        width: 537px;
-        height: 22px;
-        margin-left: 52px;
+    .search_input {
+        width: 100%;
+        font-size: 24px;
+        margin-left: 3%;
     }
+
 
     .wrap_roll_keywords {
         position: absolute;
@@ -93,10 +102,10 @@ input {
         overflow: hidden;
         margin: 0;
 
-        .list_roll_keywords{
+        .list_roll_keywords {
             position: absolute;
-            left:0;
-            top:0;
+            left: 0;
+            top: 0;
             padding: 0;
             margin: 0;
 
@@ -107,7 +116,6 @@ input {
                 text-align: left;
             }
         }
-      
     }
     .search_btn {
         width: 52px;
@@ -129,10 +137,48 @@ input {
     }
 }
 
+.popular_search {
+    position: absolute;
+    // display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: white;
+    z-index: 2;
+
+    top: 55px;
+    width: 100%;
+    border: 1px solid red;
+    border-radius: 12px;
+
+    .popular_title {
+        color:$gray_font;
+        font-size: 20px;
+        margin-left: 40px;
+        margin-top: 20px;
+        font-weight:1000;
+    }
+
+    .wrap_pop_rank {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .pop_rank {
+            list-style: none;
+            width: 100%;
+
+            li {
+                line-height: 250%;
+            }
+        }
+    }
+}
+
 .nav_wrapper {
     margin: 0 auto;
     padding: 0 $content_side_padding;
     min-width: $content_min_width;
+    z-index: 1;
 
     .category {
         float: left;
