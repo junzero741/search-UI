@@ -2,7 +2,6 @@ import { RollingKeyword } from "./rollKeywords.js";
 
 
 
-
 function PopularKeywords() {
     this.searchBox = document.querySelector(".search_box");
     this.wrapRoll = document.querySelector(".wrap_roll_keywords");
