@@ -25,7 +25,6 @@ $item_list_size: 200px;
 ul,
 li {
     list-style: none;
-    // display: inline;
 }
 
 button,
@@ -83,12 +82,12 @@ input {
     justify-content: space-between;
     align-items: center;
 
-    .search_input {
+    .search_input:focus {
         width: 100%;
         font-size: 24px;
         margin-left: 3%;
+        outline:none;
     }
-
 
     .wrap_roll_keywords {
         position: absolute;
@@ -151,11 +150,11 @@ input {
     border-radius: 12px;
 
     .popular_title {
-        color:$gray_font;
+        color: $gray_font;
         font-size: 20px;
         margin-left: 40px;
         margin-top: 20px;
-        font-weight:1000;
+        font-weight: 1000;
     }
 
     .wrap_pop_rank {
@@ -170,6 +169,25 @@ input {
             li {
                 line-height: 250%;
             }
+        }
+    }
+}
+
+.rel_search {
+    @extend .popular_search;
+    width:100%;
+    justify-content: space-around;
+    border: 1px solid red;
+    border-radius: 12px;
+    top: 55px;
+    position: absolute;
+    z-index: 3;
+    background:white;
+    .pop_rel_keywords {
+        list-style: none;
+        margin-right: 30%;
+        li {
+            line-height: 250%;
         }
     }
 }

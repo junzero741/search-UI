@@ -1,5 +1,7 @@
 import {RollingKeyword} from "./rollKeywords.js";
-import {Search} from "./search.js";
+import {PopularKeywords} from "./popularKeywords.js";
+import {RelatedKeywords} from "./relatedKeywords.js";
 
 new RollingKeyword();
-new Search();
+new PopularKeywords();
+new RelatedKeywords();
