@@ -82,10 +82,11 @@ input {
     justify-content: space-between;
     align-items: center;
 
-    .search_input {
+    .search_input:focus {
         width: 100%;
         font-size: 24px;
         margin-left: 3%;
+        outline:none;
     }
 
     .wrap_roll_keywords {
