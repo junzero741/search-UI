@@ -2,7 +2,6 @@ function RollingKeyword () {
     this.ol = document.querySelector(".list_roll_keywords");
     this.keywordList = ["미니가습기", "수분크림", "모니터받침대", "블루투스이어폰", "헤어마스크", "연필꽂이", "귀걸이", "샤워타올", "남성벨트", "포스터액자"];
     this.addList(10);
-    this.addList(2);
     this.rolling(2000);
 }
 

@@ -56,9 +56,6 @@ PopularKeywords.prototype.activateSearch = function () {
     this.show(this.popularSearch);
     this.show(this.relContainer);
     this.searchInput.focus();
-
-
-    
     this.searchBox.style.border = `red solid 1px`;
 }
 
@@ -67,7 +64,6 @@ PopularKeywords.prototype.deActivateSearch = function () {
     this.hide(this.searchInput);
     this.show(this.wrapRoll);
     this.hide(this.relContainer);
-
     this.searchBox.style.border = `#ececec solid 1px`;
 }
 
