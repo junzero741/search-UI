@@ -51,6 +51,7 @@ PopularKeywords.prototype.makeRankList = function () {
 }
 
 PopularKeywords.prototype.activateSearch = function () {
+    
     this.hide(this.wrapRoll);
     this.show(this.searchInput);
     this.show(this.popularSearch);
@@ -64,6 +65,7 @@ PopularKeywords.prototype.deActivateSearch = function () {
     this.hide(this.searchInput);
     this.show(this.wrapRoll);
     this.hide(this.relContainer);
+    this.searchInput.blur();
     this.searchBox.style.border = `#ececec solid 1px`;
 }
 

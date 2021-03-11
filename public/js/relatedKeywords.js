@@ -3,6 +3,7 @@ function RelatedKeywords() {
     this.searchInput = document.querySelector(".search_input");
     this.relContainer = document.querySelector(".rel_search");
     this.popularSearch = document.querySelector(".popular_search");
+    this.wrapRoll = document.querySelector(".wrap_roll_keywords");
     this.cache = '';
     this.checkInput();
 }
@@ -15,7 +16,7 @@ RelatedKeywords.prototype.checkInput = function () {
 
 RelatedKeywords.prototype.timer = function (beforeInput) {
     setTimeout(() => {
-        if (this.searchInput.value === beforeInput && this.searchInput.value !== "") {
+        if (this.searchInput.value === beforeInput) {
             console.log("입력멈춤");
             this.loadData(this.searchInput.value);
             this.checkInput();
@@ -25,17 +26,21 @@ RelatedKeywords.prototype.timer = function (beforeInput) {
             this.checkInput();
         }
 
-        if (this.searchInput.value === "") {
-            this.relContainer.classList.add("hide");
-
-        } else {
-            this.relContainer.classList.remove("hide");
-        }
-
+        this.showHide();
     }, 500);
 }
 
+RelatedKeywords.prototype.showHide = function() {
+    if (this.searchInput.value === "" || this.searchInput !== document.activeElement) {
+        this.relContainer.classList.add("hide");
+        this.popularSearch.classList.remove("hide");
+        if(!this.wrapRoll.classList.contains("hide")) this.popularSearch.classList.add("hide");
 
+    } else {
+        this.popularSearch.classList.add("hide");
+        this.relContainer.classList.remove("hide");
+    }
+}
 
 
 RelatedKeywords.prototype.loadData = function (input) {
