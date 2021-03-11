@@ -52,10 +52,11 @@ PopularKeywords.prototype.makeRankList = function () {
 
 PopularKeywords.prototype.activateSearch = function () {
     
+
     this.hide(this.wrapRoll);
     this.show(this.searchInput);
     this.show(this.popularSearch);
-    this.show(this.relContainer);
+    this.hide(this.relContainer);
     this.searchInput.focus();
     this.searchBox.style.border = `red solid 1px`;
 }
