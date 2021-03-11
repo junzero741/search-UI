@@ -57,10 +57,30 @@ RelatedKeywords.prototype.loadData = function (input) {
 
 
 RelatedKeywords.prototype.fillSearch = function (suggestArr) {
+
     this.ul.innerHTML = "";
+    let pattern = this.searchInput.value;
+    let re = new RegExp(pattern, "g");
+
     suggestArr.forEach((el) => {
         const li = document.createElement("li");
-        li.innerHTML = el.value;
+
+        let searchString = el.value;
+        let matchArray;
+        let resultString= "<pre>";
+        let first = 0;
+        let last = 0;
+    
+        while ((matchArray = re.exec(searchString)) != null ) {
+            last = matchArray.index;
+            resultString += searchString.substring(first, last);
+            resultString += "<span class='found'>" + matchArray[0] + "</span>";
+            first = re.lastIndex; 
+        }
+        resultString += searchString.substring(first, searchString.length);
+        resultString += "</pre>";
+
+        li.innerHTML = resultString;
         this.ul.appendChild(li);
     })
 }
