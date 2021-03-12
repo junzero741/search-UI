@@ -14,25 +14,29 @@ function RelatedKeywords() {
 
 RelatedKeywords.prototype.onEvent = function () {
     this.searchInput.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowDown" || e.key === "ArrowUp") {
-            this.bindedPrintKey = this.printKey.bind(this)
-            this.bindedPrintKey(e);
-        }
+        this.bindedPrintKey = this.printKey.bind(this)
+        this.bindedPrintKey(e);
     });
     this.searchInput.addEventListener("input", (e) => {
-        if(this.timeout) clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            this.loadData(this.searchInput.value);
-            this.showHide();
-        },500);
+        if (this.timeout) clearTimeout(this.timeout);
+
+        this.runSearch(this.searchInput.value)
+        .then((input) => this.loadData(input))
+        .then(this.showHide());
     })
 }
 
+
+RelatedKeywords.prototype.runSearch = function (input) {
+    return new Promise((resolve, reject) => {
+        this.timeout = setTimeout(() => {
+            resolve(input);
+        }, 1000);
+    })
+}
+
+
 RelatedKeywords.prototype.printKey = function (e) {
-
-    if (this.listIdx > 10) this.listIdx = 10;
-    // if (this.listIdx < 0) this.listIdx = 1;
-
     if (e.key === "ArrowDown") {
         this.searchInput.value = (this.ul.childNodes[this.listIdx].textContent);
 
@@ -43,12 +47,14 @@ RelatedKeywords.prototype.printKey = function (e) {
             this.ul.childNodes[this.listIdx].classList.add("selected");
         }
         this.listIdx++;
-    } 
+        if (this.listIdx > this.ul.childNodes.length) this.listIdx = this.ul.childNodes.length;
+    }
     if (e.key === "ArrowUp") {
         this.searchInput.value = (this.ul.childNodes[this.listIdx - 1].textContent);
         this.ul.childNodes[this.listIdx - 1].classList.add("selected");
         this.ul.childNodes[this.listIdx].classList.remove("selected");
         this.listIdx--;
+        if (this.listIdx < 0) this.listIdx = 0;
     }
 }
 
@@ -56,6 +62,7 @@ RelatedKeywords.prototype.printKey = function (e) {
 RelatedKeywords.prototype.showHide = function () {
     if (this.searchInput.value === "" || this.searchInput !== document.activeElement) {
         this.listIdx = 0;
+        this.ul.innerHTML = "";
         this.relContainer.classList.add("hide");
         this.popularSearch.classList.remove("hide");
         if (!this.wrapRoll.classList.contains("hide")) this.popularSearch.classList.add("hide");
@@ -111,10 +118,5 @@ RelatedKeywords.prototype.fillSearch = function (suggestArr) {
     })
 
 }
-
-
-
-
-
 
 export { RelatedKeywords };
