@@ -6,9 +6,8 @@ function RelatedKeywords() {
     this.wrapRoll = document.querySelector(".wrap_roll_keywords");
     this.cache = '';
     this.listIdx = 0;
-    this.time;
+    this.timeout;
     this.onEvent();
-    this.checkInput();
 }
 
 
@@ -20,6 +19,13 @@ RelatedKeywords.prototype.onEvent = function () {
             this.bindedPrintKey(e);
         }
     });
+    this.searchInput.addEventListener("input", (e) => {
+        if(this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            this.loadData(this.searchInput.value);
+            this.showHide();
+        },500);
+    })
 }
 
 RelatedKeywords.prototype.printKey = function (e) {
@@ -44,7 +50,6 @@ RelatedKeywords.prototype.printKey = function (e) {
         this.ul.childNodes[this.listIdx].classList.remove("selected");
         this.listIdx--;
     }
-    // clearTimeout(this.time);
 }
 
 
@@ -108,29 +113,6 @@ RelatedKeywords.prototype.fillSearch = function (suggestArr) {
 }
 
 
-RelatedKeywords.prototype.checkInput = function () {
-    const beforeInput = this.searchInput.value;
-    this.runSearch(beforeInput)
-    .then(res => {
-        if(this.searchInput.value === res) {
-            console.log("입력멈춤");
-            this.loadData(this.searchInput.value);
-        } else {
-            console.log("입력변함 혹은 입력비어있음");
-        }
-    })
-    .then(() => this.checkInput())
-    .then(this.showHide());
-}
-
-
-RelatedKeywords.prototype.runSearch = function (beforeInput) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(beforeInput);
-        }, 1000);
-    });
-}
 
 
 
