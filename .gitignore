@@ -1,6 +1,5 @@
 node_modules
-*.json
+package-lock.json
 routes
 app.js
-*.css
-*.map
+css/
