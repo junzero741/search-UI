@@ -8,7 +8,7 @@ function RelatedKeywords() {
   this.wrapRoll = document.querySelector('.wrap_roll_keywords');
   this.cache = '';
   this.listIdx = 0;
-  this.timeout;
+  this.timer;
   this.onEvent();
 }
 
@@ -17,19 +17,15 @@ RelatedKeywords.prototype.onEvent = function () {
     this.bindedPrintKey = this.printKey.bind(this);
     this.bindedPrintKey(e);
   });
+
+  // debounce
   this.searchInput.addEventListener('input', (e) => {
-    if (this.timeout) clearTimeout(this.timeout);
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
 
-    this.runSearch(this.searchInput.value)
-      .then((input) => this.loadData(input))
-      .then(this.showHide());
-  });
-};
-
-RelatedKeywords.prototype.runSearch = function (input) {
-  return new Promise((resolve, reject) => {
-    this.timeout = setTimeout(() => {
-      resolve(input);
+    this.timer = setTimeout(() => {
+      this.loadData(this.searchInput.value);
     }, 1000);
   });
 };
@@ -78,7 +74,8 @@ RelatedKeywords.prototype.loadData = function (input) {
     fetch(url)
       .then((res) => res.json())
       .then((res) => this.fillSearch(res.suggestions))
-      .then((this.cache = url));
+      .then((this.cache = url))
+      .then(this.showHide());
   }
 };
 
