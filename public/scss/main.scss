@@ -15,8 +15,18 @@ $icon2_url: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/i
 $icon_size: 130px 90px;
 $nav_font_size: 16px;
 $item_list_size: 200px;
+$auto_roll_animation: top 0.3s;
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
+a {
+    cursor: pointer;
+}
+
+container, legend {
+    display: block;
+}
 
 .hide {
     display: none;
@@ -29,7 +39,7 @@ li {
 
 button,
 input {
-    border: transparent;
+    border: none;
     background-color: transparent;
 }
 
@@ -90,6 +100,7 @@ input {
     }
 
     .wrap_roll_keywords {
+        
         position: absolute;
         left: 25px;
         top: 16px;
@@ -101,12 +112,18 @@ input {
         overflow: hidden;
         margin: 0;
 
+        .move {
+            transition: $auto_roll_animation;
+        }
+
         .list_roll_keywords {
             position: absolute;
             left: 0;
             top: 0;
             padding: 0;
             margin: 0;
+            
+          
 
             li {
                 color: #939393;
@@ -138,7 +155,6 @@ input {
 
 .popular_search {
     position: absolute;
-    // display: flex;
     flex-direction: column;
     justify-content: space-around;
     background: white;
@@ -192,7 +208,7 @@ input {
     }
 }
 
-.nav_wrapper {
+.nav_container {
     margin: 0 auto;
     padding: 0 $content_side_padding;
     min-width: $content_min_width;
