@@ -18,6 +18,15 @@ $item_list_size: 200px;
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
+
+a {
+    cursor: pointer;
+}
+
+container {
+    display: block;
+}
+
 .hide {
     display: none;
 }
@@ -29,7 +38,7 @@ li {
 
 button,
 input {
-    border: 1px solid blue;
+    border: none;
     background-color: transparent;
 }
 
@@ -138,7 +147,6 @@ input {
 
 .popular_search {
     position: absolute;
-    // display: flex;
     flex-direction: column;
     justify-content: space-around;
     background: white;
@@ -192,7 +200,7 @@ input {
     }
 }
 
-.nav_wrapper {
+.nav_container {
     margin: 0 auto;
     padding: 0 $content_side_padding;
     min-width: $content_min_width;
