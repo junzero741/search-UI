@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "watch": "sass --watch ./public/scss:./public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/junzero741/fe-w5-searchUI#readme",
   "devDependencies": {
     "sass": "^1.37.5"
+  },
+  "dependencies": {
+    "concurrently": "^6.2.1"
   }
 }
