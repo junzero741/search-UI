@@ -1,4 +1,4 @@
-import { RollingKeyword } from './rollKeywords.js';
+import { TOP_TEN_KEYWORDS } from '../data/consts.js';
 
 function PopularKeywords() {
   this.searchBox = document.querySelector('.search_box');
@@ -7,7 +7,7 @@ function PopularKeywords() {
   this.popularSearch = document.querySelector('.popular_search');
   this.popRankUlList = document.querySelectorAll('.pop_rank');
   this.relContainer = document.querySelector('.rel_search');
-  this.rankItems = new RollingKeyword().keywordList;
+  this.rankItems = TOP_TEN_KEYWORDS;
   this.onEvent();
   this.makeRankList();
 }
@@ -32,17 +32,17 @@ PopularKeywords.prototype.show = function (elem) {
 };
 
 PopularKeywords.prototype.makeRankList = function () {
-  const itemCount1 = 5;
-  const itemCount2 = 10;
-  for (let i = 0; i < itemCount1; i++) {
+  const ITEM_COUNT_1 = 5;
+  const ITEM_COUNT_2 = 10;
+  for (let i = 0; i < ITEM_COUNT_1; i++) {
     const li = document.createElement('li');
-    li.innerHTML = `<a> <strong>${i + 1}</strong>   ${this.rankItems[i]}</a>`;
+    li.innerHTML = `<a> <strong>${this.rankItems[i].rank}</strong>   ${this.rankItems[i].name}</a>`;
     this.popRankUlList[0].appendChild(li);
   }
 
-  for (let i = 5; i < itemCount2; i++) {
+  for (let i = 5; i < ITEM_COUNT_2; i++) {
     const li = document.createElement('li');
-    li.innerHTML = `<a> <strong>${i + 1}</strong>   ${this.rankItems[i]}</a>`;
+    li.innerHTML = `<a> <strong>${this.rankItems[i].rank}</strong>   ${this.rankItems[i].name}</a>`;
     this.popRankUlList[1].appendChild(li);
   }
 };
