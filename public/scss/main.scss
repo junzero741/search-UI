@@ -15,6 +15,7 @@ $icon2_url: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/i
 $icon_size: 130px 90px;
 $nav_font_size: 16px;
 $item_list_size: 200px;
+$auto_roll_animation: top 0.3s;
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
@@ -99,6 +100,7 @@ input {
     }
 
     .wrap_roll_keywords {
+        
         position: absolute;
         left: 25px;
         top: 16px;
@@ -110,12 +112,18 @@ input {
         overflow: hidden;
         margin: 0;
 
+        .move {
+            transition: $auto_roll_animation;
+        }
+
         .list_roll_keywords {
             position: absolute;
             left: 0;
             top: 0;
             padding: 0;
             margin: 0;
+            
+          
 
             li {
                 color: #939393;
