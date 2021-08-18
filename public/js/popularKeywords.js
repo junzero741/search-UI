@@ -5,6 +5,7 @@ function PopularKeywords() {
 	this.searchBox = document.querySelector(".search_box");
 	this.wrapRoll = document.querySelector(".wrap_roll_keywords");
 	this.searchInput = document.querySelector(".search_input");
+	this.liRank = document.querySelector(".li_rank");
 	this.popularSearch = document.querySelector(".popular_search");
 	this.popRankUlList = document.querySelectorAll(".pop_rank");
 	this.relContainer = document.querySelector(".rel_search");
@@ -14,14 +15,10 @@ function PopularKeywords() {
 }
 
 PopularKeywords.prototype.onEvent = function () {
-	let searchActivationTimer;
-	this.searchBox.addEventListener("click", this.activateSearch.bind(this));
-	this.searchBox.addEventListener("mouseleave", () => {
-		searchActivationTimer = setTimeout(this.deActivateSearch.bind(this), 500);
-	});
-
-	this.searchBox.addEventListener("mouseenter", () => {
-		clearTimeout(searchActivationTimer);
+	document.addEventListener("click", (e) => {
+		if (e.target.closest(this.searchBox.tagName) === null)
+			this.deActivateSearch();
+		else this.activateSearch();
 	});
 };
 
@@ -36,6 +33,7 @@ PopularKeywords.prototype.makeRankList = function () {
 
 	for (let i = 5; i < ITEM_COUNT_2; i++) {
 		const li = document.createElement("li");
+		li.classList.add("rank_item");
 		li.innerHTML = `<a> <strong>${this.rankItems[i].rank}</strong>   ${this.rankItems[i].name}</a>`;
 		this.popRankUlList[1].appendChild(li);
 	}
