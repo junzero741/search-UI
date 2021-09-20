@@ -8,7 +8,7 @@ function RollingKeyword() {
 }
 
 RollingKeyword.prototype.addList = function () {
-	this.keywordList.forEach((keyword) => {
+	this.keywordList.forEach(keyword => {
 		const li = document.createElement("li");
 		li.classList.add("li_rank");
 		li.innerHTML = `<span class="num_rank">${keyword.rank}</span> &nbsp; ${keyword.name}`;
@@ -22,6 +22,7 @@ RollingKeyword.prototype.rolling = function () {
 	const MOVE_CLASS = "move";
 	const SHOW_TIME = 2000;
 	const ROLL_SPACE = 30;
+	const POS_Y_INIT = 0;
 	const rollEnd = -ROLL_SPACE * this.keywordList.length;
 
 	const roll = () => {
@@ -33,7 +34,7 @@ RollingKeyword.prototype.rolling = function () {
 				posY -= ROLL_SPACE;
 			} else {
 				this.ol.classList.remove(MOVE_CLASS);
-				posY = 0;
+				posY = POS_Y_INIT;
 				this.ol.style.top = `${posY}px`;
 			}
 			roll();
